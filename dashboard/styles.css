@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+*{
+ font-family:'Roboto' sans-serif;
+}
+body{
+ padding:0px;
+ margin:0px;
+ height:100vh;
+}
+#main-screen,#viewKey-screen,#editKey-screen{
+ padding-left:12px;
+ padding-right:12px;
+}
+#main-screen .aviso{
+ margin-top:90px;
+ text-align:center;
+ opacity:0;
+ display:none;
+ transition:0.3s;
+}
+.mdc-card__primary-action{
+ padding:0px 16px 0px 16px;
+}
+.mdc-drawer{
+ position:absolute;
+ top:0px
+}
+.mdc-drawer .mdc-card{
+ margin:5px;
+}
+.mdc-drawer .mdc-card__media{
+ width:50%;
+ margin-right:2px;
+ background:url("https://picsum.photos/id/88/200/200")center/cover;	
+}
+.mdc-drawer .mdc-card__primary-action{
+ display:flex;
+ flex-direction:row;
+ padding:1px;
+}
+#viewKey-screen,#editKey-screen{
+ display:none;
+}
+.mdc-fab{
+ position: fixed;
+ bottom: 1rem;
+ right: 1rem;
+}
+
+@media(min-width: 1024px) {
+ .mdc-fab{
+	bottom: 1.5rem;
+	right: 1.5rem;
+ }
+}
+.tokens-list{
+ list-style-type:none;
+}
+.tokens-list li:nth-child(1){
+ margin-left:-40px;
+ font-weight:bolder;
+}
+#viewKey-screen button,.mdc-text-field{
+ width:100%;
+}
+.mdc-linear-progress{
+ transition:0.3s
+}

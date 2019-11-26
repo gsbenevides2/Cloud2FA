@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+	<script>eruda.init();</script>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#E25B1B">
+	<title>Auth Dashboard</title>
+	<link href="../mdc-build.css" rel="stylesheet">
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="styles.css" media="all">
+	<script defer src="https://www.gstatic.com/firebasejs/7.5.0/firebase.js"></script>
+	<script defer src="../network.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+	<script defer src="scripts.js"></script>
+
+ </head>
+ <body onLoad="onload()">
+	<header id="app-bar" class="mdc-top-app-bar">
+	 <div class="mdc-top-app-bar__row">
+		<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+		 <button onclick="topAppBarButtonAction()" class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+		 <span class="mdc-top-app-bar__title">Auth</span>
+		</section>
+	 </div>
+	</header>
+	<div role="progressbar" class="mdc-top-app-bar--fixed-adjust mdc-linear-progress mdc-linear-progress--indeterminate">
+	 <div class="mdc-linear-progress__buffering-dots"></div>
+	 <div class="mdc-linear-progress__buffer"></div>
+	 <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+		<span class="mdc-linear-progress__bar-inner"></span>
+	 </div>
+	 <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+		<span class="mdc-linear-progress__bar-inner"></span>
+	 </div>
+	</div>
+	<div clss="mdc-top-app-bar--fixed-adjust" id="main-screen">
+	 <!--div class="mdc-card mdl-card--outlined">
+		<div class="mdc-card__primary-action" onclick="openCard()" tabindex="0">
+		 <h2 class="mdc-typography mdc-typography--headline6">Google</h2>
+		 <h3 class="mdc-typography mdc-typography--subtitle2">732 432</h3>
+		</div>
+		<div class="mdc-card__actions">
+		 <div class="mdc-card__action-icons">
+			<button onclick="editKey()" class="mdc-button mdc-card__action mdc-card__action--button">  <span class="mdc-button__ripple"></span>Editar</button>
+		 </div>
+		</div>
+	 </div-->
+	 <div class="mdc-typography aviso">
+		<img width="200px" src="https://www.svgrepo.com/show/30136/padlock.svg" alt="padlock"><br>
+		Você não tem nenhuma chave registrada. Por favor aperte no <b>+</b> para registrar
+	 </div>
+	</div>
+	<div id="viewKey-screen" clss="mdc-top-app-bar--fixed-adjust">
+	 <h2 class="mdc-typography mdc-typography--headline5">Google</h2>
+	 <h3 class="mdc-typography mdc-typography--headline6">745 667</h3>
+	 <ul class="tokens-list mdc-typography">
+		<li>Tokens</li>
+		<li>Jsjsj</li>
+	 </ul>
+	 <button class="mdc-button mdc-button--outlined">  <span class="mdc-button__ripple"></span> Editar</button>
+	</div>
+	<div id="editKey-screen" clas="mdc-top-app-bar--fixed-adjust">
+	 <h2 class="mdc-typography mdc-typography--headline5">Editar perfil</h2>
+	 <div class="mdc-text-field">
+		<input class="mdc-text-field__input" id="name-input">
+		<div class="mdc-line-ripple"></div>
+		<label for="name-input" class="mdc-floating-label">Nome do perfil</label>
+	 </div> 
+	 <br>
+	 <br>
+	 <div class="mdc-text-field mdc-text-field--with-trailing-icon">
+		<i class="material-icons mdc-text-field__icon">camera_alt</i>
+		<input class="mdc-text-field__input" id="chaveOTP-input">
+		<div class="mdc-line-ripple"></div>
+		<label for="chaveOTP-input" class="mdc-floating-label">Chave OTP</label>
+	 </div>
+	 <br>
+	 <br>
+	 <div class="mdc-text-field mdc-text-field--with-trailing-icon">
+		<i class="material-icons mdc-text-field__icon">add</i>
+		<input class="mdc-text-field__input" id="addList-input">
+		<div class="mdc-line-ripple"></div>
+		<label for="addList-input" class="mdc-floating-label">Adicionar Tokens</label>
+	 </div>
+	 <br>
+	 <br>
+	 <ul class="mdc-list">
+		<li class="mdc-list-item">
+		 <label class="mdc-list-item__text">Token 1</label>
+		 <i class="material-icons mdc-list-item__meta">remove</i>
+		</li>
+	 </ul>
+	</div>
+	<aside class="mdc-drawer mdc-drawer--dismissible">
+	 <div class="mdc-drawer__content">
+		<div class="mdc-card demo-card">
+		 <div class="mdc-card__primary-action" tabindex="0">
+			<div class="mdc-card__media mdc-card__media--square" id="userCard-image"></div>
+			<div>
+			 <h2 class="mdc-typography mdc-typography--headline7">Bem Vindo</h2>
+			 <h3 class="mdc-typography mdc-typography--subtitle2" id="userCard-name">gsbenevides2@gmail.com</h3>
+			</div>
+		 </div>
+		</div>
+		<nav class="mdc-list">
+		 <a onclick="drawer.open=false" class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+			<i class="material-icons mdc-list-item__graphic" aria-hidden="true">vpn_key</i>
+			<span class="mdc-list-item__text">Chaves</span>
+		 </a>
+		 <a class="mdc-list-item" href="#">
+			<i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
+			<span class="mdc-list-item__text">Configurações</span>
+		 </a>
+		 <a class="mdc-list-item" href="#">
+			<i class="material-icons mdc-list-item__graphic" aria-hidden="true">exit_to_app</i>
+			<span class="mdc-list-item__text">Sair</span>
+		 </a>
+		</nav>
+	 </div>
+	</aside>
+	<button onclick="fabAction()" class="mdc-fab" aria-label="add">
+	 <div class="mdc-fab__ripple"></div>
+	 <span class="mdc-fab__icon material-icons">add</span>
+	</button>
+	<div class="mdc-snackbar">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label" role="status" aria-live="polite">
+      Can't send photo. Retry in 5 seconds.
+    </div>
+    <!--div class="mdc-snackbar__actions">
+      <button type="button" class="mdc-button mdc-snackbar__action">Retry</button>
+    </div-->
+  </div>
+</div>
+ </body>
+</html>

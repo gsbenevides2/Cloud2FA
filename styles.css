@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+*{
+ font-family: 'Roboto', sans-serif;
+}
+body{
+ background:url('back.webp')center/cover;
+ height:100vh;
+}/*
+:root{
+ --mdc-theme-primary:#E25B1B;
+}*/
+.mdc-card{
+ position:relative;
+ left:50%;
+ transform:translate(-50%,-50%);
+ width:300px;
+ top:30%;
+}
+.mdc-card__primary-action{
+ padding:0px 12px 16.6px 12px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+	<script>eruda.init();</script>	
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#E25B1B">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Auth Login</title>
+	<link href="./mdc-build.css" rel="stylesheet">
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+	<script defer src="../network.js"></script>
+	<script defer src="scripts.js"></script>
+	<link rel="stylesheet" href="styles.css" media="all">
+ </head>
+ <body onLoad="onLoad()">
+	<div class="mdc-card">
+	 <div class="mdc-card__primary-action">
+		<h2 class="mdc-typography mdc-typography--headline6">Seja Bem Vindo</h2>
+		<button onclick="entrar()" class="mdc-button mdc-button--outlined">  <span class="mdc-button__ripple"></span> Entrar</button>
+	 </div>
+	</div>
+	<div class="mdc-snackbar">
+	 <div class="mdc-snackbar__surface">
+		<div class="mdc-snackbar__label"
+				 role="status"
+				 aria-live="polite">
+		 Mensagem
+		</div>
+	 </div>
+	</div>
+ </body>
+</html>
